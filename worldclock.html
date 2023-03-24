@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Clock</title>
+   </head>
+   
+   
+   <style>
+     .clock {
+   font-family: sans-serif;
+   border: thin solid;
+   border-radius: 10px;
+   padding: 5px;
+}
+   </style>
+   
+   <body>
+<p><strong>California :</strong> <span class="clock" data-timezone="US/Pacific"></span></p>
+<p><strong>Austin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :</strong> <span class="clock" data-timezone="US/Central"></span></p>
+<p><strong>India &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> <span class="clock" data-timezone="Asia/Kolkata"></span></p>
+<p><strong>GMT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> <span class="clock" data-timezone="GMT"></span></p>
+      
+      
+      <script>
+        const clocks = document.getElementsByClassName("clock");
+
+function updateClocks() {
+  for (let clock of clocks) {
+    let timezone = clock.dataset.timezone;
+    let time = new Date().toLocaleTimeString("en-US", {
+     hourCycle:'h24',
+     year: 'numeric', 
+     month: 'numeric', 
+     day: 'numeric',
+      timeZone: timezone
+    });
+    clock.textContent = time;
+  }
+}
+
+// Update every minute:
+setInterval(updateClocks, 1);
+updateClocks();
+      </script>
+      
+      
+   </body>
+</html>
